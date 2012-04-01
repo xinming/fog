@@ -63,6 +63,7 @@ module Fog
         def save(options = {})
           requires :body, :directory, :key
           options['Content-Type'] = content_type if content_type
+          options['Access-Control-Allow-Origin'] = "*"
           data = connection.put_object(directory.key, key, body, options)
           merge_attributes(data.headers.reject {|key, value| ['Content-Length', 'Content-Type'].include?(key)})
           self.content_length = Fog::Storage.get_body_size(body)
