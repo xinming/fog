@@ -13,7 +13,7 @@ module Fog
           path = "#{Fog::Rackspace.escape(container)}/#{Fog::Rackspace.escape(object)}"
           request(
             :expects  => 201,
-            :headers  => {'X-Object-Manifest' => path},
+            :headers  => {'X-Object-Manifest' => path,'Access-Control-Allow-Origin' => "*"},
             :method   => 'PUT',
             :path     => path
           )
